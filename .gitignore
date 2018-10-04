@@ -1,0 +1,9 @@
+# Compilation
+target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+.git
+bin/
