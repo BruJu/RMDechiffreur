@@ -71,5 +71,12 @@ public interface ExplorateurDInstructions {
 	 * donne l'exécuteur d'instructions associé
 	 */
 	void referencerCartes(Function<ReferenceMap, ExecuteurInstructions> generateur);
+	
+	/**
+	 * Donne la référence à l'évènement commun dont le numéro est passé
+	 * @param idEvenementCommun Le numéro de l'évènement commun
+	 * @return La référence
+	 */
+	ReferenceEC getReference(int idEvenementCommun);
 
 }

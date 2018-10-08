@@ -7,8 +7,8 @@ package fr.bruju.rmdechiffreur.controlleur;
  *
  */
 public class Ignorance {
-	private int codeDebut;
-	private int codeFin;
+	private final int codeDebut;
+	private final int codeFin;
 	private int niveau;
 
 	/**

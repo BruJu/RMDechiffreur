@@ -110,4 +110,13 @@ public class Explorateur implements ExplorateurDInstructions {
 			}
 		}
 	}
+	
+	/* ====
+	 * Misc
+	 * ==== */
+
+	@Override
+	public ReferenceEC getReference(int idEvenementCommun) {
+		return new ReferenceEC(lecteur.evenementCommun(idEvenementCommun));
+	}
 }

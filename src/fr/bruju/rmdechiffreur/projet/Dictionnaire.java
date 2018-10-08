@@ -12,7 +12,7 @@ import fr.bruju.rmdechiffreur.Utilitaire;
  */
 public class Dictionnaire {
 	/** Les noms */
-	private List<String> donneesExtraites;
+	private final List<String> donneesExtraites;
 
 	/**
 	 * Crée un dictionnaire avec la liste de noms donnée

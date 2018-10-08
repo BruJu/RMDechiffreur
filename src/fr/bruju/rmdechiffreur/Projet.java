@@ -86,7 +86,11 @@ public class Projet implements ExplorateurDInstructions {
 	public void referencerCartes(Function<ReferenceMap, ExecuteurInstructions> generateur) {
         explorateur.referencerCartes(generateur);
     }
-	
+
+	@Override
+	public ReferenceEC getReference(int idEvenementCommun) {
+		return explorateur.getReference(idEvenementCommun);
+	}
 
 	/* =============
 	 * Dictionnaires
