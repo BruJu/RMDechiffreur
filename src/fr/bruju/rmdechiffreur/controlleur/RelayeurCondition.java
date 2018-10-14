@@ -21,12 +21,8 @@ public class RelayeurCondition implements RelayeurDInstructions {
 	private boolean ignorerBrancheSi;
 	private boolean ignorerBrancheSinon;
 
-	/**
-	 * Commence l'ignorement d'une instruction
-	 * @param codeDebut Le code de l'instruction qui commence l'ignorement
-	 * @param codeFin Le code qui permet la fin
-	 */
-	public RelayeurCondition(RelayeurDInstructions relayeurPere, int mode, int codeFin) {
+	
+	public RelayeurCondition(RelayeurDInstructions relayeurPere, int mode) {
 		this.relayeurPere = relayeurPere;
 		this.niveau = 1;
 		this.estDansLaBrancheSi = true;
@@ -53,7 +49,9 @@ public class RelayeurCondition implements RelayeurDInstructions {
 				niveau++;
 				return this;
 			} else if (code == CODE_FINSI) {
-				if (ignorerBrancheSinon && !estDansLaBrancheSi) {
+				if ((ignorerBrancheSinon && !estDansLaBrancheSi)
+						|| (ignorerBrancheSi && estDansLaBrancheSi)
+						) {
 					relayeurPere.traiter(instruction); // Transmettre la fin
 				}
 				
