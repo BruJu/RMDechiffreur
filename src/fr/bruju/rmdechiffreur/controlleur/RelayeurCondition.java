@@ -18,26 +18,36 @@ public class RelayeurCondition implements RelayeurDInstructions {
 	private int niveau;
 	private boolean estDansLaBrancheSi;
 	
-	private boolean ignorerBrancheSi;
-	private boolean ignorerBrancheSinon;
+	private final boolean ignorerBrancheSi;
+	private final boolean ignorerBrancheSinon;
 
 	
 	public RelayeurCondition(RelayeurDInstructions relayeurPere, int mode) {
 		this.relayeurPere = relayeurPere;
 		this.niveau = 1;
 		this.estDansLaBrancheSi = true;
-		ignorerBrancheSi = (mode | 2) == 1;
-		ignorerBrancheSinon = (mode | 1) == 1;
+		ignorerBrancheSi = (mode & 2) == 2;
+		ignorerBrancheSinon = (mode & 1) == 1;
 	}
 
+
+	private boolean estRelayable(int code) {
+		// Instruction transmise dnas tous les cas si on envoie pas sinon et si on est pas au niveau 1
+		if (niveau > 1 || code != CODE_SINON) {
+			return true;
+		}
+		
+		// Sinon transmis au niveau 1 que si on prend les deux branches
+		return !(ignorerBrancheSi || ignorerBrancheSinon);
+	}
+	
 	@Override
-	public RelayeurDInstructions traiter(RMInstruction instruction) {
+	public void traiter(RMInstruction instruction, DechiffreurInstructions dechiffreurInstructions) {
 		int code = instruction.code();
 		
 		if (!brancheActuelleIgnoree()) {
-			if (code != CODE_SINON || (!ignorerBrancheSi && ! ignorerBrancheSinon)) {
-				// Sinon n'est transmis que si on exploite les deux branches
-				relayeurPere.traiter(instruction);
+			if (estRelayable(code)) {
+				relayeurPere.traiter(instruction, dechiffreurInstructions);
 			}
 		}
 		
@@ -47,27 +57,23 @@ public class RelayeurCondition implements RelayeurDInstructions {
 			if (code == CODE_SINON) {
 				estDansLaBrancheSi = false;
 				niveau++;
-				return this;
 			} else if (code == CODE_FINSI) {
-				if ((ignorerBrancheSinon && !estDansLaBrancheSi)
-						|| (ignorerBrancheSi && estDansLaBrancheSi)
-						) {
-					relayeurPere.traiter(instruction); // Transmettre la fin
+				if (brancheActuelleIgnoree() && (!ignorerBrancheSi || !ignorerBrancheSinon)) {
+					relayeurPere.traiter(instruction, dechiffreurInstructions); // Transmettre la fin
 				}
 				
-				return relayeurPere;
+				dechiffreurInstructions.relayeurActuel = relayeurPere;
+			} else {
+				throw new RuntimeException("code = " + code);
 			}
-			
-			throw new RuntimeException("code = " + code);
 		} else {
 			if (code == CODE_SINON) {
 				niveau++;
 			}
-			
-			return this;
 		}
 	}
 	
+
 	private boolean brancheActuelleIgnoree() {
 		return (estDansLaBrancheSi && ignorerBrancheSi) || (!estDansLaBrancheSi && ignorerBrancheSinon);
 	}
@@ -79,8 +85,6 @@ public class RelayeurCondition implements RelayeurDInstructions {
 			niveau--;
 		}
 	}
-	
-
 
 
 }

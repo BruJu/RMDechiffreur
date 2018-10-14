@@ -1,6 +1,7 @@
 package fr.bruju.rmdechiffreur.controlleur;
 
 import java.util.List;
+import java.util.Stack;
 
 import fr.bruju.lcfreader.rmobjets.RMInstruction;
 import fr.bruju.rmdechiffreur.ExecuteurInstructions;
@@ -33,15 +34,16 @@ public class DechiffreurInstructions {
 	/* =========
 	 * Interface
 	 * ========= */
-	/** Traiteur courant */
-	private RelayeurDInstructions traiteurCourant;
+	
+	RelayeurDInstructions relayeurActuel;
 
+	
 	/**
 	 * Crée un déchiffreur qui utilise l'exécuteur donné
 	 * @param executeur L'exécuteur d'instructions
 	 */
 	public DechiffreurInstructions(ExecuteurInstructions executeur) {
-		this.traiteurCourant = new RelayeurDechiffreur(executeur);
+		relayeurActuel = new RelayeurDechiffreur(executeur);
 	}
 	
 	/**
@@ -49,7 +51,7 @@ public class DechiffreurInstructions {
 	 * @param instruction L'instruction à exécuteur
 	 */
 	public void executer(RMInstruction instruction) {
-		this.traiteurCourant = traiteurCourant.traiter(instruction);
+		relayeurActuel.traiter(instruction, this);
 	}
 	
 	/**

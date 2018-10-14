@@ -7,6 +7,9 @@ import fr.bruju.lcfreader.rmobjets.RMInstruction;
 import fr.bruju.rmdechiffreur.ExecuteurInstructions;
 
 public class RelayeurDechiffreur implements RelayeurDInstructions {
+	
+	public static RelayeurDechiffreur instance;
+	
 	/* =============
 	 * BASE GENERALE
 	 * ============= */
@@ -34,18 +37,20 @@ public class RelayeurDechiffreur implements RelayeurDInstructions {
 	public RelayeurDechiffreur(ExecuteurInstructions executeur) {
 		remplirInstructions();
 		this.executeur = executeur;
+		instance = this;
 	}
 
 	@Override
-	public RelayeurDInstructions traiter(RMInstruction instruction) {
+	public void traiter(RMInstruction instruction, DechiffreurInstructions dechiffreurInstructions) {
 		Traiteur traiteur = instructionsConnues.get(instruction.code());
 		
 		if (traiteur != null) {
 			int resultat = traiteur.executer(executeur, instruction.parametres(), instruction.argument());
-			return resultat == 0 ? this : traiteur.relayer(resultat, this);
+			if (resultat != 0) {
+				dechiffreurInstructions.relayeurActuel = traiteur.relayer(resultat, dechiffreurInstructions.relayeurActuel);
+			}
 		} else {
 			instructionInconnue(instruction);
-			return this;
 		}
 	}
 

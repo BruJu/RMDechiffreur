@@ -13,8 +13,8 @@ public class RelayeurBloquantSimple implements RelayeurDInstructions {
 	private final int codeDebut;
 	private final int codeFin;
 	private int niveau;
-	private final RelayeurDInstructions relayeurPere;
 	private int[] temporisation; // Liste des codes qui annulent le bloquage lors de l'instruction suivant
+	private final RelayeurDInstructions relayeurPere;
 
 	/**
 	 * Commence l'ignorement d'une instruction
@@ -32,10 +32,10 @@ public class RelayeurBloquantSimple implements RelayeurDInstructions {
 	
 	
 	public RelayeurBloquantSimple(RelayeurDInstructions relayeurPere, int codeDebut, int codeFin, int[] temporisation) {
+		this.relayeurPere = relayeurPere;
 		this.codeDebut = codeDebut;
 		this.codeFin = codeFin;
 		this.niveau = 1;
-		this.relayeurPere = relayeurPere;
 		this.temporisation = temporisation;
 	}
 
@@ -47,13 +47,14 @@ public class RelayeurBloquantSimple implements RelayeurDInstructions {
 	 * @return this si les instructions suivantes doivent être ignorées. null si on met fin à l'ignorement des
 	 * instructions
 	 */
-	public RelayeurDInstructions traiter(RMInstruction instruction) {
+	public void traiter(RMInstruction instruction, DechiffreurInstructions dechiffreurInstructions) {
 		int code = instruction.code();
 		
 		if (temporisation != null) {
 			if (Utilitaire.getPosition(code, temporisation) == -1) {
-				relayeurPere.traiter(instruction);
-				return relayeurPere;
+				dechiffreurInstructions.relayeurActuel = relayeurPere;
+				relayeurPere.traiter(instruction, dechiffreurInstructions);
+				return;
 			}
 		}
 		
@@ -63,6 +64,8 @@ public class RelayeurBloquantSimple implements RelayeurDInstructions {
 			this.niveau --;
 		}
 		
-		return (niveau == 0) ? relayeurPere : this;
+		if (niveau == 0) {
+			dechiffreurInstructions.relayeurActuel = relayeurPere;
+		}
 	}
 }

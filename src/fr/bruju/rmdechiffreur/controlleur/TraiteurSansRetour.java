@@ -28,5 +28,4 @@ interface TraiteurSansRetour extends Traiteur {
 	default RelayeurDInstructions relayer(int resultatExecution, RelayeurDInstructions relayeurActuel) {
 		return relayeurActuel;
 	}
-
 }

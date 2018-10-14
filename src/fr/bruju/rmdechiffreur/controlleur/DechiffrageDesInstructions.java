@@ -223,7 +223,7 @@ public class DechiffrageDesInstructions {
 
 		@Override
 		public RelayeurDInstructions relayer(int resultatExecution, RelayeurDInstructions relayeurActuel) {
-			return new RelayeurCondition(relayeurActuel, resultatExecution);
+			return new RelayeurCondition(RelayeurDechiffreur.instance, resultatExecution);
 		}
 	}
 
