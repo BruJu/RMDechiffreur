@@ -1,7 +1,6 @@
 package fr.bruju.rmdechiffreur.controlleur;
 
 import fr.bruju.lcfreader.rmobjets.RMInstruction;
-import fr.bruju.rmdechiffreur.Utilitaire;
 
 /**
  * Classe permettant de gérer le fait d'ignorer certaines instructions
@@ -40,7 +39,10 @@ public class RelayeurCondition implements RelayeurDInstructions {
 		int code = instruction.code();
 		
 		if (!brancheActuelleIgnoree()) {
-			relayeurPere.traiter(instruction);
+			if (code != CODE_SINON || (!ignorerBrancheSi && ! ignorerBrancheSinon)) {
+				// Sinon n'est transmis que si on exploite les deux branches
+				relayeurPere.traiter(instruction);
+			}
 		}
 		
 		majNiveau(code);
@@ -51,6 +53,10 @@ public class RelayeurCondition implements RelayeurDInstructions {
 				niveau++;
 				return this;
 			} else if (code == CODE_FINSI) {
+				if (ignorerBrancheSinon && !estDansLaBrancheSi) {
+					relayeurPere.traiter(instruction); // Transmettre la fin
+				}
+				
 				return relayeurPere;
 			}
 			
