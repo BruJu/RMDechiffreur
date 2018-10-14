@@ -30,7 +30,7 @@ import fr.bruju.rmdechiffreur.modele.Condition.CondVehiculeUtilise;
  */
 public interface ExtCondition extends ExecuteurInstructions {
 	@Override
-	public default boolean Flot_si(Condition condition) {
+	public default int Flot_si(Condition condition) {
 		return condition.accept(this);
 	}
 	
@@ -38,75 +38,75 @@ public interface ExtCondition extends ExecuteurInstructions {
 	 * Booléen retourné par défaut pour les conditions non traitées
 	 * @return Le booléen retourné par défaut pour les conditions non traitées
 	 */
-	public default boolean conditionRetourDeBase() {
-		return getBooleenParDefaut();
+	public default int conditionRetourDeBase() {
+		return getBooleenParDefaut() ? 0 : 3;
 	}
 
-	public default boolean herosStatut(CondHerosAStatut condHerosAStatut) {
+	public default int herosStatut(CondHerosAStatut condHerosAStatut) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean herosObjet(CondHerosPossedeObjet condHerosPossedeObjet) {
+	public default int herosObjet(CondHerosPossedeObjet condHerosPossedeObjet) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean herosSort(CondHerosPossedeSort condHerosPossedeSort) {
+	public default int herosSort(CondHerosPossedeSort condHerosPossedeSort) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean herosVivant(CondHerosAAuMoinsHp condHerosAAuMoinsHp) {
+	public default int herosVivant(CondHerosAAuMoinsHp condHerosAAuMoinsHp) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean herosNiveau(CondHerosNiveauMin condHerosNiveauMin) {
+	public default int herosNiveau(CondHerosNiveauMin condHerosNiveauMin) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean herosNomme(CondHerosAPourNom condHerosAPourNom) {
+	public default int herosNomme(CondHerosAPourNom condHerosAPourNom) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean herosPresent(CondHerosDansLEquipe condHerosDansLEquipe) {
+	public default int herosPresent(CondHerosDansLEquipe condHerosDansLEquipe) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean musiqueABoucle(CondMusiqueJoueePlusDUneFois condMusiqueJoueePlusDUneFois) {
+	public default int musiqueABoucle(CondMusiqueJoueePlusDUneFois condMusiqueJoueePlusDUneFois) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean eventDemarreParAppui(CondEventDemarreParAppui condEventDemarreParAppui) {
+	public default int eventDemarreParAppui(CondEventDemarreParAppui condEventDemarreParAppui) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean vehicule(CondVehiculeUtilise condVehiculeUtilise) {
+	public default int vehicule(CondVehiculeUtilise condVehiculeUtilise) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean direction(CondDirection condDirection) {
+	public default int direction(CondDirection condDirection) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean objet(CondObjet condObjet) {
+	public default int objet(CondObjet condObjet) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean argent(CondArgent condArgent) {
+	public default int argent(CondArgent condArgent) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean chrono(CondChrono condChrono) {
+	public default int chrono(CondChrono condChrono) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean interrupteur(CondInterrupteur condInterrupteur) {
+	public default int interrupteur(CondInterrupteur condInterrupteur) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean variableVariable(int variable, Comparateur comparateur, Variable droite) {
+	public default int variableVariable(int variable, Comparateur comparateur, Variable droite) {
 		return conditionRetourDeBase();
 	}
 
-	public default boolean variableFixe(int variable, Comparateur comparateur, ValeurFixe droite) {
+	public default int variableFixe(int variable, Comparateur comparateur, ValeurFixe droite) {
 		return conditionRetourDeBase();
 	}
 }

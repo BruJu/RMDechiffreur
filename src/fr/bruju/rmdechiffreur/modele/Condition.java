@@ -86,7 +86,7 @@ public interface Condition {
 		
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.interrupteur(this);
 		}
 	}
@@ -125,7 +125,7 @@ public interface Condition {
 		
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			if (valeurDroite instanceof ValeurFixe) {
 				return extCondition.variableFixe(variable, comparateur, (ValeurFixe) valeurDroite);
 			} else {
@@ -163,7 +163,7 @@ public interface Condition {
 		
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.chrono(this);
 		}
 	}
@@ -195,7 +195,7 @@ public interface Condition {
 		
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.argent(this);
 		}
 	}
@@ -232,7 +232,7 @@ public interface Condition {
 		
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.objet(this);
 		}
 	}
@@ -265,7 +265,7 @@ public interface Condition {
 		
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.direction(this);
 		}
 	}
@@ -294,7 +294,7 @@ public interface Condition {
 		}
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.vehicule(this);
 		}
 		
@@ -322,7 +322,7 @@ public interface Condition {
 		
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.eventDemarreParAppui(this);
 		}
 	}
@@ -347,7 +347,7 @@ public interface Condition {
 		
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.musiqueABoucle(this);
 		}
 	}
@@ -384,7 +384,7 @@ public interface Condition {
 		
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.herosPresent(this);
 		}
 	}
@@ -416,7 +416,7 @@ public interface Condition {
 		
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.herosNomme(this);
 		}
 	}
@@ -450,7 +450,7 @@ public interface Condition {
 		
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.herosNiveau(this);
 		}
 	}
@@ -483,7 +483,7 @@ public interface Condition {
 		}
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.herosVivant(this);
 		}
 	}
@@ -521,7 +521,7 @@ public interface Condition {
 		}
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.herosSort(this);
 		}
 	}
@@ -559,7 +559,7 @@ public interface Condition {
 		}
 
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.herosObjet(this);
 		}
 	}
@@ -592,11 +592,11 @@ public interface Condition {
 		}
 		
 		@Override
-		public boolean accept(ExtCondition extCondition) {
+		public int accept(ExtCondition extCondition) {
 			return extCondition.herosStatut(this);
 		}
 	}
 
 
-	public boolean accept(ExtCondition extCondition);
+	public int accept(ExtCondition extCondition);
 }

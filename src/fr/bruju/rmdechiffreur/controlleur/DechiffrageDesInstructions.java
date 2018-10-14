@@ -61,12 +61,10 @@ public class DechiffrageDesInstructions {
 		RedirectionDeMapRetour classe2 = decodages::put;
 
 		// Instructions à implémenter
-		classe1.put(10130, (e, t, c) -> {
-		}); // TODO changement de portrait
+		classe1.put(10130, (e, t, c) -> {}); // TODO changement de portrait
 
 		// Instructions implémentées
-		classe1.put(10, (e, t, c) -> {
-		});
+		classe1.put(10, (e, t, c) -> {});
 		classe1.put(10110, (e, t, c) -> e.Messages_afficherMessage(c));
 		classe1.put(10120, this::$10120_changeMessageOptions);
 		classe2.put(10140, new $10140_initierQCM());
@@ -145,7 +143,7 @@ public class DechiffrageDesInstructions {
 		classe1.put(11930, (e, p, s) -> e.Systeme_peutSauvegarder(p[0] == 0));
 		classe1.put(11950, (e, p, s) -> e.Jeu_ouvrirMenu());
 		classe1.put(11960, (e, p, s) -> e.Systeme_peutOuvrirLeMenu(p[0] == 0));
-		classe2.put(12010, new $12010_condition());
+		decodages.put(12010, new $12010_condition());
 		classe1.put(12110, (e, p, s) -> e.Flot_etiquette(p[0]));
 		classe1.put(12120, (e, p, s) -> e.Flot_sautEtiquette(p[0]));
 		classe1.put(12210, (e, p, s) -> e.Flot_boucleDebut());
@@ -185,20 +183,22 @@ public class DechiffrageDesInstructions {
 
 	private static class $10140_initierQCM implements TraiteurARetour {
 		@Override
-		public RelayeurBloquantSimple creerIgnorance() {
-			return new RelayeurBloquantSimple(10140, 20141);
+		public boolean traiter(ExecuteurInstructions executeur, int[] parametres, String chaine) {
+			return executeur.SaisieMessages_initierQCM(ExecEnum.ChoixQCM.values()[parametres[0]]);
 		}
 
 		@Override
-		public boolean traiter(ExecuteurInstructions executeur, int[] parametres, String chaine) {
-			return executeur.SaisieMessages_initierQCM(ExecEnum.ChoixQCM.values()[parametres[0]]);
+		public RelayeurDInstructions relayer(int resultatExecution, RelayeurDInstructions relayeurActuel) {
+			return new RelayeurBloquantSimple(relayeurActuel, 10140, 20141);
 		}
 	}
 
 	private static class $10710_lancerCombat implements TraiteurARetour {
+		private static final int[] codeVictoire = new int[] {20720};
+		
 		@Override
-		public RelayeurBloquantSimple creerIgnorance() {
-			return new RelayeurBloquantSimple(10710, 20713);
+		public RelayeurDInstructions relayer(int resultatExecution, RelayeurDInstructions relayeurActuel) {
+			return new RelayeurBloquantSimple(relayeurActuel, 10710, 20713, codeVictoire);
 		}
 
 		@Override
@@ -215,15 +215,15 @@ public class DechiffrageDesInstructions {
 		}
 	}
 
-	private static class $12010_condition implements TraiteurARetour {
+	private static class $12010_condition implements Traiteur {
 		@Override
-		public RelayeurBloquantSimple creerIgnorance() {
-			return new RelayeurBloquantSimple(12010, 22011);
+		public int executer(ExecuteurInstructions executeur, int[] parametres, String chaine) {
+			return executeur.Flot_si(dechiffrerCondition(parametres, chaine));
 		}
 
 		@Override
-		public boolean traiter(ExecuteurInstructions executeur, int[] parametres, String chaine) {
-			return executeur.Flot_si(dechiffrerCondition(parametres, chaine));
+		public RelayeurDInstructions relayer(int resultatExecution, RelayeurDInstructions relayeurActuel) {
+			return new RelayeurBloquantSimple(relayeurActuel, 12010, 22011);
 		}
 	}
 

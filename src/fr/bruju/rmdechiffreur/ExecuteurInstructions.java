@@ -850,10 +850,11 @@ public interface ExecuteurInstructions {
 	/**
 	 * Commence une condition
 	 * @param condition La condition
-	 * @return Vrai si le contenu est exploré
+	 * @return 0 si le contenu est exploré, 1 si seule la branche si est explorée, 2 si sur la branche sinon est
+	 * explorée, 3 si aucune branche n'est explorée
 	 */
-	public default boolean Flot_si(Condition condition) {
-		return getBooleenParDefaut();
+	public default int Flot_si(Condition condition) {
+		return getBooleenParDefaut() ? 0 : 3;
 	}
 	
 	/**
