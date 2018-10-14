@@ -185,8 +185,8 @@ public class DechiffrageDesInstructions {
 
 	private static class $10140_initierQCM implements TraiteurARetour {
 		@Override
-		public Ignorance creerIgnorance() {
-			return new Ignorance(10140, 20141);
+		public RelayeurBloquantSimple creerIgnorance() {
+			return new RelayeurBloquantSimple(10140, 20141);
 		}
 
 		@Override
@@ -197,8 +197,8 @@ public class DechiffrageDesInstructions {
 
 	private static class $10710_lancerCombat implements TraiteurARetour {
 		@Override
-		public Ignorance creerIgnorance() {
-			return new Ignorance(10710, 20713);
+		public RelayeurBloquantSimple creerIgnorance() {
+			return new RelayeurBloquantSimple(10710, 20713);
 		}
 
 		@Override
@@ -217,8 +217,8 @@ public class DechiffrageDesInstructions {
 
 	private static class $12010_condition implements TraiteurARetour {
 		@Override
-		public Ignorance creerIgnorance() {
-			return new Ignorance(12010, 22011);
+		public RelayeurBloquantSimple creerIgnorance() {
+			return new RelayeurBloquantSimple(12010, 22011);
 		}
 
 		@Override

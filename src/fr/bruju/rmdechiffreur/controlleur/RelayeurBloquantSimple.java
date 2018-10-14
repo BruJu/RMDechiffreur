@@ -1,12 +1,14 @@
 package fr.bruju.rmdechiffreur.controlleur;
 
+import fr.bruju.lcfreader.rmobjets.RMInstruction;
+
 /**
  * Classe permettant de gérer le fait d'ignorer certaines instructions
  * 
  * @author Bruju
  *
  */
-public class Ignorance {
+public class RelayeurBloquantSimple implements RelayeurDInstructions {
 	private final int codeDebut;
 	private final int codeFin;
 	private int niveau;
@@ -16,7 +18,7 @@ public class Ignorance {
 	 * @param codeDebut Le code de l'instruction qui commence l'ignorement
 	 * @param codeFin Le code qui permet la fin
 	 */
-	public Ignorance(int codeDebut, int codeFin) {
+	public RelayeurBloquantSimple(int codeDebut, int codeFin) {
 		this.codeDebut = codeDebut;
 		this.codeFin = codeFin;
 		this.niveau = 1;
@@ -28,7 +30,7 @@ public class Ignorance {
 	 * @return this si les instructions suivantes doivent être ignorées. null si on met fin à l'ignorement des
 	 * instructions
 	 */
-	public Ignorance appliquerCode(int code) {
+	public RelayeurBloquantSimple appliquerCode(int code) {
 		if (codeDebut == code) {
 			this.niveau ++;
 		} else if (codeFin == code) {
@@ -36,5 +38,10 @@ public class Ignorance {
 		}
 		
 		return (niveau == 0) ? null : this;
+	}
+
+	@Override
+	public RelayeurDInstructions traiter(RMInstruction instruction) {
+		return appliquerCode(instruction.code());
 	}
 }

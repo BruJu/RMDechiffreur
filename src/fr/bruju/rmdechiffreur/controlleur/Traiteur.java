@@ -10,5 +10,7 @@ import fr.bruju.rmdechiffreur.ExecuteurInstructions;
  *
  */
 interface Traiteur {	
-	public Ignorance executer(ExecuteurInstructions executeur, int[] parametres, String chaine);
+	public int executer(ExecuteurInstructions executeur, int[] parametres, String chaine);
+	
+	public RelayeurDInstructions relayer(int resultatExecution, RelayeurDInstructions relayeurActuel);
 }

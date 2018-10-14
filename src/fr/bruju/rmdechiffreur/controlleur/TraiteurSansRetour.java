@@ -19,8 +19,14 @@ interface TraiteurSansRetour extends Traiteur {
 	void executionVoid(ExecuteurInstructions executeur, int[] parametres, String chaine);
 
 	@Override
-	default Ignorance executer(ExecuteurInstructions executeur, int[] parametres, String chaine) {
+	default int executer(ExecuteurInstructions executeur, int[] parametres, String chaine) {
 		executionVoid(executeur, parametres, chaine);
-		return null;
+		return 0;
 	}
+
+	@Override
+	default RelayeurDInstructions relayer(int resultatExecution, RelayeurDInstructions relayeurActuel) {
+		return relayeurActuel;
+	}
+
 }
