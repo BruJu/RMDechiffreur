@@ -12,7 +12,7 @@ public class VariableHeros implements ValeurDroiteVariable {
 	}
 
 
-	public static enum Caracteristique {
+	public enum Caracteristique {
 		NIVEAU,
 		EXPERIENCE,
 		HPACTUEL,

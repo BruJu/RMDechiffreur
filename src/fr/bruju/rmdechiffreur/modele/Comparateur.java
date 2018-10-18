@@ -56,7 +56,7 @@ public enum Comparateur {
 	public Comparateur oppose;
 	
 	/** Symbole d'affichage du signe */
-	public String symbole;
+	public final String symbole;
 	
 	/**
 	 * Construit un opérateur de test

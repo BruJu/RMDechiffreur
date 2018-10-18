@@ -113,7 +113,7 @@ public class Projet implements ExplorateurDInstructions {
 		 * @param chaine Nom du champ dans le fichier RPG_RT.db
 		 * @param instanciation Fonction d'instanciation du dictionnaire voulu (enlevant ou non les symboles)
 		 */
-		private Dictionnaires(String chaine, Function<List<String>, Dictionnaire> instanciation) {
+		Dictionnaires(String chaine, Function<List<String>, Dictionnaire> instanciation) {
 			this.nom = chaine;
 			this.instanciation = instanciation;
 		}

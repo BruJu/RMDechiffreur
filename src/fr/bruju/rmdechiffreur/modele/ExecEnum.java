@@ -122,10 +122,10 @@ public class ExecEnum {
 		
 	}
 	
-	public static enum Position {
+	public enum Position {
 		HAUT,
 		MILIEU,
-		BAS;
+		BAS
 	}
 	
 	public static enum ChoixQCM {

@@ -7,3 +7,8 @@ target/
 .settings/
 .git
 bin/
+
+# Intellij
+.idea/
+*.iml
+*.iws

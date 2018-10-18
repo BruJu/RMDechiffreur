@@ -38,7 +38,7 @@ public class Dictionnaire {
 	public void ecrireFichier(String fichierDestination) {
 		StringBuilder sb = new StringBuilder();
 		for (String valeur : donneesExtraites) {
-			sb.append(valeur + "\n");
+			sb.append(valeur).append("\n");
 		}
 		
 		Utilitaire.Fichier_Ecrire(fichierDestination, sb.toString());

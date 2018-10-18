@@ -67,7 +67,7 @@ public class Explorateur implements ExplorateurDInstructions {
 	
 	@Override
 	public void explorerEvenementsCommuns(Consumer<RMEvenementCommun> actionSurLesEvenementCommuns) {
-		lecteur.evenementsCommuns().values().forEach(actionSurLesEvenementCommuns::accept);
+		lecteur.evenementsCommuns().values().forEach(actionSurLesEvenementCommuns);
 	}
 
 	@Override

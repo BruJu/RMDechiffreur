@@ -12,7 +12,7 @@ public class ValeurDeplacable implements ValeurDroiteVariable {
 	}
 
 	
-	public static enum Caracteristique {
+	public enum Caracteristique {
 		ID_MAP,
 		X,
 		Y,

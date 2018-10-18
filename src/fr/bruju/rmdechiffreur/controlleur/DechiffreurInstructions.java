@@ -1,7 +1,6 @@
 package fr.bruju.rmdechiffreur.controlleur;
 
 import java.util.List;
-import java.util.Stack;
 
 import fr.bruju.lcfreader.rmobjets.RMInstruction;
 import fr.bruju.rmdechiffreur.ExecuteurInstructions;

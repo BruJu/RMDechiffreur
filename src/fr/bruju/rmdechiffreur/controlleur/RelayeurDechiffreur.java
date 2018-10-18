@@ -32,7 +32,7 @@ public class RelayeurDechiffreur implements RelayeurDInstructions {
 	 * ========================== */
 	
 	
-	private ExecuteurInstructions executeur;
+	private final ExecuteurInstructions executeur;
 	
 	public RelayeurDechiffreur(ExecuteurInstructions executeur) {
 		remplirInstructions();

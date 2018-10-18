@@ -42,10 +42,7 @@ public class RelayeurBloquantSimple implements RelayeurDInstructions {
 
 
 	/**
-	 * Applique le code au bloc d'ignorement.
-	 * @param code Le code reçu
-	 * @return this si les instructions suivantes doivent être ignorées. null si on met fin à l'ignorement des
-	 * instructions
+	 * Applique le code au bloc.
 	 */
 	public void traiter(RMInstruction instruction, DechiffreurInstructions dechiffreurInstructions) {
 		int code = instruction.code();

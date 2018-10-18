@@ -53,7 +53,7 @@ public enum OpMathematique {
 	public String symbole;
 
 	/** Vrai si le fait de mettre l'opérande de gauche à 0 rend le résultat égal à 0 */
-	public boolean zeroAbsorbantAGauche = false;
+	public boolean zeroAbsorbantAGauche;
 	
 	/** Element neutre */
 	public int neutre;
@@ -105,7 +105,7 @@ public enum OpMathematique {
 	
 	/**
 	 * Donne l'élément neutre
-	 * @return
+	 * @return L'élément neutre de l'opération
 	 */
 	public Integer getNeutre() {
 		return neutre;
