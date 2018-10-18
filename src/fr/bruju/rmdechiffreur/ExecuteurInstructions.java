@@ -704,6 +704,25 @@ public interface ExecuteurInstructions {
 	public default void Messages_afficherSuiteMessage(String chaine) {
 	}
 
+
+	/**
+	 * Détermine le portrait à afficher à chaque message
+	 * @param nomPlanche Le nom de la planche
+	 * @param position La position du portrait sur la planche
+	 * @param affichageAGauche Vrai si le portrait doit être affiché à gauche, faux si il doit être affiché à droite
+	 * @param affichageInverse Vrai si le portrait doit être inversé par rapport à l'image de la planche
+	 */
+	public default void Messages_afficherPortrait(String nomPlanche, int position, boolean affichageAGauche,
+												  boolean affichageInverse) {
+
+	}
+
+	/**
+	 * Efface le portrait actuellement affiché à chaque message
+	 */
+	public default void Messages_effacerPortrait() {
+	}
+
 	/**
 	 * Modifie les options d'affichage de message
 	 * @param transparent Si vrai la boite de dialogue est transparente

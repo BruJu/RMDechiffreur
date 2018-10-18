@@ -60,13 +60,11 @@ public class DechiffrageDesInstructions {
 		RedirectionDeMapSans classe1 = decodages::put;
 		RedirectionDeMapRetour classe2 = decodages::put;
 
-		// Instructions à implémenter
-		classe1.put(10130, (e, t, c) -> {}); // TODO changement de portrait
-
 		// Instructions implémentées
 		classe1.put(10, (e, t, c) -> {});
 		classe1.put(10110, (e, t, c) -> e.Messages_afficherMessage(c));
 		classe1.put(10120, this::$10120_changeMessageOptions);
+		classe1.put(10130, this::$10130_afficherPortrait);
 		classe2.put(10140, new $10140_initierQCM());
 		classe1.put(10150, (e, t, c) -> e.SaisieMessages_saisieNombre(t[1], t[0]));
 		classe1.put(10210, this::$10210_changerSwitch);
@@ -231,6 +229,21 @@ public class DechiffrageDesInstructions {
 		executeur.Messages_modifierOptions(parametres[0] == 1, extrairePosition(parametres[1]), parametres[2] == 1,
 				parametres[3] == 0);
 	}
+
+	private void $10130_afficherPortrait(ExecuteurInstructions executeur, int[] parametres, String chaine) {
+		String nomFaceset = chaine;
+
+		if (nomFaceset.equals("")) {
+			executeur.Messages_effacerPortrait();
+		} else {
+			int positionPortrait = parametres[0];
+			boolean affichageAGauche = parametres[1] == 0;
+			boolean portraitInverse = parametres[1] == 1;
+
+			executeur.Messages_afficherPortrait(nomFaceset, positionPortrait, affichageAGauche, portraitInverse);
+		}
+	}
+
 
 	private void $10210_changerSwitch(ExecuteurInstructions executeur, int[] parametres, String chaine) {
 		try {
