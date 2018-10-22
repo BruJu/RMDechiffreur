@@ -1,5 +1,6 @@
 package fr.bruju.rmdechiffreur.modele;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 import fr.bruju.rmdechiffreur.controlleur.ExtCondition;
@@ -561,6 +562,19 @@ public interface Condition {
 		@Override
 		public int accept(ExtCondition extCondition) {
 			return extCondition.herosObjet(this);
+		}
+
+		@Override
+		public boolean equals(Object o) {
+			if (this == o) return true;
+			if (o == null || getClass() != o.getClass()) return false;
+			CondHerosPossedeObjet that = (CondHerosPossedeObjet) o;
+			return idHeros == that.idHeros && idObjet == that.idObjet;
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(idHeros, idObjet);
 		}
 	}
 	
