@@ -17,7 +17,7 @@ public class ReferenceEC implements Reference {
 
 	/**
 	 * Crée une référence à un évènement commun
-	 * @param eventCommun L'évènement commun
+	 * @param evenementCommun L'évènement commun
 	 */
 	public ReferenceEC(RMEvenementCommun evenementCommun) {
 		this.eventCommun = evenementCommun.id();

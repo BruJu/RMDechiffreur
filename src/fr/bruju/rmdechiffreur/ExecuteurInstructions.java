@@ -1,5 +1,7 @@
 package fr.bruju.rmdechiffreur;
 
+import fr.bruju.lcfreader.rmobjets.RMInstruction;
+import fr.bruju.rmdechiffreur.controlleur.DechiffreurInstructions;
 import fr.bruju.rmdechiffreur.modele.ArrierePlanCombat;
 import fr.bruju.rmdechiffreur.modele.Condition;
 import fr.bruju.rmdechiffreur.modele.Couleur;
@@ -27,6 +29,8 @@ import fr.bruju.rmdechiffreur.modele.ExecEnum.Transition;
 import fr.bruju.rmdechiffreur.modele.ExecEnum.TypeEffet;
 import fr.bruju.rmdechiffreur.modele.VariableHeros.Caracteristique;
 
+import java.util.List;
+
 /**
  * Exécuteur d'instructions
  * <p>
@@ -37,6 +41,15 @@ import fr.bruju.rmdechiffreur.modele.VariableHeros.Caracteristique;
  *
  */
 public interface ExecuteurInstructions {
+	/**
+	 * Applique l'exécuteur à la liste des instructions données
+	 * @param instructions La liste des instructions
+	 */
+	public default void appliquerInstructions(List<RMInstruction> instructions) {
+		DechiffreurInstructions dechiffreur = new DechiffreurInstructions(this);
+		dechiffreur.executer(instructions);
+	}
+
 	/**
 	 * Renvoie la valeur à retourner pour les instructions sans implémentation particulière : vrai si on veut explorer
 	 * toutes les branches, faux si on ne veut pas les explorer.
