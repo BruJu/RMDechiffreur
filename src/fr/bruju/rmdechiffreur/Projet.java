@@ -67,6 +67,11 @@ public class Projet implements ExplorateurDInstructions {
         explorateur.explorerEvenementsCommuns(actionSurLesEvenementCommuns);
     }
 
+    @Override
+    public void explorerEvenementsSurCarte(BiConsumer<RMMap, RMEvenement> actionSurEvenement) {
+		explorateur.explorerEvenementsSurCarte(actionSurEvenement);
+	}
+
 	@Override
 	public void explorerEvenements(TriConsumer<RMMap, RMEvenement, RMPage> actionSurLesPages) {
         explorateur.explorerEvenements(actionSurLesPages);

@@ -47,6 +47,12 @@ public interface ExplorateurDInstructions {
 	void explorerEvenementsCommuns(Consumer<RMEvenementCommun> actionSurLesEvenementCommuns);
 
 	/**
+	 * Permet d'explorer tous les évènements d'un projet
+	 * @param actionSurEvenement Action sur un évènement
+	 */
+	void explorerEvenementsSurCarte(BiConsumer<RMMap, RMEvenement> actionSurEvenement);
+
+	/**
 	 * Permet d'explorer tout un projet
 	 * @param actionSurLesPages Action réalisée pour chaque page d'évènement de chaque carte
 	 */

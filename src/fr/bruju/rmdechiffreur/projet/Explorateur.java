@@ -71,11 +71,23 @@ public class Explorateur implements ExplorateurDInstructions {
 	}
 
 	@Override
+	public void explorerEvenementsSurCarte(BiConsumer<RMMap, RMEvenement> actionSurEvenement) {
+		for (RMMap rmMap : lecteur.maps().values()) {
+			for (RMEvenement rmEvenement : rmMap.evenements().values()) {
+				actionSurEvenement.accept(rmMap, rmEvenement);
+			}
+		}
+	}
+
+	@Override
 	public void explorerEvenements(TriConsumer<RMMap, RMEvenement, RMPage> actionSurLesPages) {
-		// Applique à chaque page de chaque évènement de la map
-		Consumer<RMMap> actionMap = rmMap -> rmMap.evenements().values().forEach(ev -> ev.pages().forEach(page ->
-							actionSurLesPages.consume(rmMap, ev, page)));
-		lecteur.maps().values().forEach(actionMap);
+		for (RMMap rmMap : lecteur.maps().values()) {
+			for (RMEvenement rmEvenement : rmMap.evenements().values()) {
+				for (RMPage rmPage : rmEvenement.pages()) {
+					actionSurLesPages.consume(rmMap, rmEvenement, rmPage);
+				}
+			}
+		}
 	}
 
 	@Override
