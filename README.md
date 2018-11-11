@@ -89,7 +89,7 @@ On souhaite désormais savoir quels sont les évènements qui modifient chaque v
 
 ```
 	public static void main(String[] args) {
-		String dossierDuJeu = "A:\\Dev\\Projet\\";
+		String dossierDuJeu = "c:\\MonSuperJeu\\";
 		Projet projet = new Projet(dossierDuJeu);
 		projet.referencerCartes(ModificationDUneVariable::new);
 	}
@@ -137,7 +137,7 @@ conditions). Les implémenter permet d'implémenter uniquement les cas qui nous 
 
 ```
 	public static void main(String[] args) {
-		String dossierDuJeu = "A:\\Dev\\Projet\\";
+		String dossierDuJeu = "c:\\MonSuperJeu\\";
 		Projet projet = new Projet(dossierDuJeu);
 
 		projet.referencerCartes(ModificationDUneVariable::new);
