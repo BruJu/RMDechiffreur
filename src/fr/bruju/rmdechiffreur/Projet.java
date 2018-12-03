@@ -176,7 +176,8 @@ public class Projet implements ExplorateurDInstructions {
 	 * @return La liste de tous les objets
 	 */
 	public List<String> extraireObjets() {
-		return dictionnaires[Dictionnaires.VARIABLE.ordinal()].getListe();
+		assurerExistanceDictionnaire(Dictionnaires.OBJET);
+		return dictionnaires[Dictionnaires.OBJET.ordinal()].getListe();
 	}
 	
 	/**
