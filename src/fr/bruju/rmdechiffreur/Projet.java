@@ -170,6 +170,14 @@ public class Projet implements ExplorateurDInstructions {
 		assurerExistanceDictionnaire(dictionnaire);
 		return dictionnaires[dictionnaire.ordinal()].extraire(index);
 	}
+
+	/**
+	 * Donne la liste de tous les objets
+	 * @return La liste de tous les objets
+	 */
+	public List<String> extraireObjets() {
+		return dictionnaires[Dictionnaires.VARIABLE.ordinal()].getListe();
+	}
 	
 	/**
 	 * Ecrit le contenu de tous les dictionnaires dans le dossier

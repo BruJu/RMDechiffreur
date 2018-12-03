@@ -60,7 +60,7 @@ public class AfficheLama {
 		@Override
 		public boolean getBooleenParDefaut() {
 			// Méthode appelée pour les comportements par défauts (vides) d'instructions possédant des sous
-			// branches (exemple : if / elseif / end -> faut il explorer ou non le contenu du si et du sinon ?)
+			// branches (exemple : if / elseif / end -> faut il explorer ou non le enregistrement du si et du sinon ?)
 			return true;
 		}
 

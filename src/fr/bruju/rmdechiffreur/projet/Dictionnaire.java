@@ -1,5 +1,6 @@
 package fr.bruju.rmdechiffreur.projet;
 
+import java.util.Collections;
 import java.util.List;
 
 import fr.bruju.rmdechiffreur.Utilitaire;
@@ -29,6 +30,14 @@ public class Dictionnaire {
 	 */
 	public String extraire(int index) {
 		return donneesExtraites.get(index - 1);
+	}
+
+	/**
+	 * Renvoie la liste de toutes les entrées dans une liste non modifiable
+	 * @return La liste de toutes les entrées
+	 */
+	public List<String> getListe() {
+		return Collections.unmodifiableList(donneesExtraites);
 	}
 
 	/**
