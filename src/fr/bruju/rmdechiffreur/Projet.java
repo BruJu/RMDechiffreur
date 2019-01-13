@@ -170,15 +170,6 @@ public class Projet implements ExplorateurDInstructions {
 		assurerExistanceDictionnaire(dictionnaire);
 		return dictionnaires[dictionnaire.ordinal()].extraire(index);
 	}
-
-	/**
-	 * Donne la liste de tous les objets
-	 * @return La liste de tous les objets
-	 */
-	public List<String> extraireObjets() {
-		assurerExistanceDictionnaire(Dictionnaires.OBJET);
-		return dictionnaires[Dictionnaires.OBJET.ordinal()].getListe();
-	}
 	
 	/**
 	 * Ecrit le contenu de tous les dictionnaires dans le dossier
@@ -200,5 +191,27 @@ public class Projet implements ExplorateurDInstructions {
 			dictionnaires[dictionnaire.ordinal()] =
 					dictionnaire.instanciation.apply(lecteur.getListeDeNoms(dictionnaire.nom));
 		}
+	}
+
+
+	/**
+	 * Donne la liste de tous les objets
+	 * @return La liste de tous les objets
+	 */
+	public List<String> extraireObjets() {
+		assurerExistanceDictionnaire(Dictionnaires.OBJET);
+		return dictionnaires[Dictionnaires.OBJET.ordinal()].getListe();
+	}
+
+	/** Donne la liste de toutes les variables */
+	public List<String> extraireVariables() {
+		assurerExistanceDictionnaire(Dictionnaires.VARIABLE);
+		return dictionnaires[Dictionnaires.VARIABLE.ordinal()].getListe();
+	}
+
+	/** Donne la liste de tous les interrupteurs */
+	public List<String> extraireInterrupteurs() {
+		assurerExistanceDictionnaire(Dictionnaires.INTERRUPTEUR);
+		return dictionnaires[Dictionnaires.INTERRUPTEUR.ordinal()].getListe();
 	}
 }
